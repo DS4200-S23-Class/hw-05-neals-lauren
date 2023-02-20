@@ -1,0 +1,42 @@
+body {
+	font-family: Arial;
+}
+
+.main-header {
+	text-align: center;
+}
+
+.acknowledgements {
+	text-align: center;
+}
+
+.flexbox {
+	display: flex;
+	flex-direction: column;
+	text-align: left;
+	flex-wrap: wrap;
+}
+
+.row > #column1 {
+	width: 60%;
+}
+.row > #column2 {
+	wdith: 40%;
+}
+
+.row {
+	display: flex;
+	flex-wrap: wrap;
+	flex: 1;
+}
+
+.column {
+	flex: 1;
+	flex-grow: 1;
+}
+
+#frame {
+	width: 500px;
+	height: 500px;
+}
+

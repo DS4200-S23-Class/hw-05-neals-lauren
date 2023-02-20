@@ -3,10 +3,89 @@
 
 <head>
     <meta charset=utf-8/>
+
+    <title>hw-05</title>
+    <link rel="stylesheet" href="style.css">
+
+    <!-- D3 library-->
+    <script src='js/d3.v6.1.1/d3.min.js'></script>
+
 </head>
 
 
 <body>
+    <h1 class="main-header">hw-05: Interactive Graph with D3</h1>
+        <div class="row">
+            
+            <div class="column" id="column1">
+            
+
+
+            </div>
+
+            <div class="column" id="column2">
+                    <div id="button-div"> </div>
+                    <form id="cord_select">
+                    <label for="x-coord">Select the x coordinate for the point you want to add.</label>
+                    <select name="x-coord" id="x-coord">
+                        <option value=1>1</option>
+                        <option value=2>2</option>
+                        <option value=3>3</option>
+                        <option value=4>4</option>
+                        <option value=5>5</option>
+                        <option value=6>6</option>
+                        <option value=7>7</option>
+                        <option value=8>8</option>
+                        <option value=9>9</option>
+                    </select>
+                    <br>
+                    <label for="y-coord">Select the y coordinate for the point you want to add.</label>
+                    <select name="y-coord" id="y-coord">
+                        <option value=1>1</option>
+                        <option value=2>2</option>
+                        <option value=3>3</option>
+                        <option value=4>4</option>
+                        <option value=5>5</option>
+                        <option value=6>6</option>
+                        <option value=7>7</option>
+                        <option value=8>8</option>
+                        <option value=9>9</option>
+                    </select>
+                </form>
+                    <br>
+                    <button type="button" id="subBotton" onclick="clickButton()">Add Point</button>
+                </div>
+            </div>
+
+
+
+
+
+
+    <div>
+        <div id="Acknowledgements">
+        <h2 class="acknowledgements" id="ack-header">Acknowledgements</h3>
+         <ul>
+            <li>https://www.w3schools.com/css/default.asp</li>
+            <li>https://www.geeksforgeeks.org/html-introduction/?ref=lbp</li>
+            <li>https://css-tricks.com/snippets/css/a-guide-to-flexbox/</li>
+            <li>https://www.w3schools.com/html/default.asp</li>
+            <li>https://www.geeksforgeeks.org/html-tags-a-to-z-list/?ref=lbp</li>
+            <li>https://www.w3schools.com/graphics/svg_intro.asp</li>
+            <li>http://www.w3.org/2000/svg</li>
+        </ul>
+    </div>
+
+    </div>
+
+
+<!-- Include JS -->
+    <script src="js/main.js"></script> 
+</body>
+
+</html>
+
+
 
 
 </body>
