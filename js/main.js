@@ -60,12 +60,49 @@ d3.csv("data/scatter-data.csv").then((data) => {
       d3.select(this).style("fill", "pink");
     }
 
+    // add border and update last point when clicked
+    function clickPoint(event, d) {
+      
+      // add/remove border when clicked
+      if(d3.select(this).style("stroke-width") == "5") {
+        d3.select(this).style("stroke-width", "0");
+      } else {
+        d3.select(this).style("stroke-width", "5")
+                       .style("stroke", "blue");
+      }
+
+      // update coordinates of most recently clicked point
+      let newText = "(" + d.x +", " + d.y + ")";
+      document.getElementById("button-div").innerHTML = newText;
+
+    }
+
+    // add new points
+    function createNewPoint() {
+      // getting a selected x value 
+      let xvals = document.getElementById("x-coord");
+      let xselected = xvals.options[xvals.selectedIndex].value;
+
+      // getting a selected y value
+      let yvals = document.getElementById("y-coord");
+      let yselected = yvals.options[yvals.selectedIndex].value;
+
+      FRAME1.append("circle")
+              .attr("cx", (X_SCALE(xselected) + MARGINS.left))
+              .attr("cy", (Y_SCALE(yselected) + MARGINS.top))
+              .attr("r", 10)
+              .attr("class", "point")
+              .style("fill", "pink");
+
+    }
+
+    document.getElementById("subButton").addEventListener('click', createNewPoint);
+
     // add event listeners to the frame
-    FRAME1.selectAll(".point")
+    FRAME1.selectAll("circle")
                       .on("mouseover", handleMouseover)
-                      .on("mouseleave", handleMouseleave);
-
-
+                      .on("mouseleave", handleMouseleave)
+                      .on("click", clickPoint);
 
 })
 
