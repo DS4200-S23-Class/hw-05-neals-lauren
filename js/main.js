@@ -60,6 +60,7 @@ d3.csv("data/scatter-data.csv").then((data) => {
       d3.select(this).style("fill", "pink");
     }
 
+
     // add border and update last point when clicked
     function clickPoint(event, d) {
       
@@ -71,9 +72,7 @@ d3.csv("data/scatter-data.csv").then((data) => {
                        .style("stroke", "blue");
       }
 
-      // update coordinates of most recently clicked point
-      let newText = "(" + d.x +", " + d.y + ")";
-      document.getElementById("button-div").innerHTML = newText;
+
 
     }
 
@@ -92,7 +91,10 @@ d3.csv("data/scatter-data.csv").then((data) => {
               .attr("cy", (Y_SCALE(yselected) + MARGINS.top))
               .attr("r", 10)
               .attr("class", "point")
-              .style("fill", "pink");
+              .style("fill", "pink")
+              .on("mouseover", handleMouseover)
+              .on("mouseleave", handleMouseleave)
+              .on("click", clickPoint);
 
     }
 
@@ -107,7 +109,9 @@ d3.csv("data/scatter-data.csv").then((data) => {
 })
 
 
-// frame for bar graph(left column)
+// BAR GRAPH
+
+// frame for bar graph
 
 const FRAME2 = d3.select("#row2")
           .append("svg")
