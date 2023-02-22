@@ -40,14 +40,30 @@ d3.csv("data/scatter-data.csv").then((data) => {
 	      	.call(d3.axisLeft(Y_SCALE).ticks(10));
 
 	// Use X_SCALE to plot our points
-    FRAME1.selectAll("points")  
+  FRAME1.selectAll("points")  
         .data(data) // passed from .then  
         .enter()       
         .append("circle")  
           .attr("cx", (d) => { return (X_SCALE(d.x) + MARGINS.left); }) 
           .attr("cy", (d) => { return (Y_SCALE(d.y) + MARGINS.top); }) 
           .attr("r", 10)
-          .attr("class", "point");
+          .attr("class", "point")
+          .style("fill", "pink");
+
+    // highlight on mouseover
+    function handleMouseover(event, d) {
+      d3.select(this).style("fill", "green");
+    }
+
+     // unhighlight on mouseleave
+    function handleMouseleave(event, d) {
+      d3.select(this).style("fill", "pink");
+    }
+
+    // add event listeners to the frame
+    FRAME1.selectAll(".point")
+                      .on("mouseover", handleMouseover)
+                      .on("mouseleave", handleMouseleave);
 
 
 
@@ -55,6 +71,7 @@ d3.csv("data/scatter-data.csv").then((data) => {
 
 
 // frame for bar graph(left column)
+
 const FRAME2 = d3.select("#row2")
           .append("svg")
             .attr("height", F_HEIGHT)
@@ -92,38 +109,38 @@ d3.csv("data/bar-data.csv").then((data) => {
           .style("fill", "blue");
 
 
-   // To add a tooltip, we will need a blank div that we 
-   //  fill in with the appropriate text. Be use to note the
-   //  styling we set here and in the .css
+   // adding a tooltip
    const TOOLTIP = d3.select("#row2")
                        .append("div")
                          .attr("class", "tooltip")
                          .style("opacity", 0); 
 
-    // Define event handler functions for tooltips
+    // highlight and show tooltip on mouseover
     function handleMouseover(event, d) {
-      // on mouseover, make opaque 
+      d3.select(this).style("fill", "orange");
       TOOLTIP.style("opacity", 1); 
    
     }
 
+
     function handleMousemove(event, d) {
       // position the tooltip and fill in information 
       TOOLTIP.html("Category: " + d.category + "<br>Value: " + d.amount)
-              .style("left", (event.pageX + 10) + "px") //add offset
-                                                          // from mouse
-              .style("top", (event.pageY - 50) + "px"); 
+      //adding offset from where the mouse hovers
+              .style("left", (event.pageX + 0.5) + "px")                                                
+              .style("top", (event.pageY - 0.5) + "px"); 
 
     }
 
+    // unhighlight and remove tooltip when mouseleave
     function handleMouseleave(event, d) {
-      // on mouseleave, make transparant again 
+      d3.select(this).style("fill", "blue");
       TOOLTIP.style("opacity", 0); 
     } 
 
-    // Add event listeners
+    // Add event listeners to the frame
     FRAME2.selectAll(".bar")
-          .on("mouseover", handleMouseover) //add event listeners
+          .on("mouseover", handleMouseover) 
           .on("mousemove", handleMousemove)
           .on("mouseleave", handleMouseleave);    
 
